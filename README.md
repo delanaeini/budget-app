@@ -1,4 +1,4 @@
-# Budget App
+# Budget App (in progress)
 
 A budgeting app made with React and Reactstrap that shows planned and spent expenses side-by-side
 
