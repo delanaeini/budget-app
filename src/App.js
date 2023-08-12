@@ -11,12 +11,23 @@ import {
 } from "reactstrap";
 
 export default function App() {
+  const initialTransactions = [
+    { transactionCategory: "home", title: "rent", amount: 1700 },
+    { transactionCategory: "home", title: "utility", amount: 300 },
+    { transactionCategory: "transportation", title: "gas", amount: 500 },
+    { transactionCategory: "food", title: "grocery", amount: 1300 },
+    { transactionCategory: "food", title: "restaurant", amount: 200 },
+  ];
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [transactions, setTransactions] = useState(initialTransactions);
 
   function handleSelection(category) {
     setSelectedCategory((selected) =>
       selected?.name === category.name ? null : category
     );
+  }
+  function handleAddTransaction(transaction) {
+    setTransactions((transactions) => [...transactions, transaction]);
   }
   return (
     <Row>
@@ -25,13 +36,25 @@ export default function App() {
           onSelection={handleSelection}
           selectedCategory={selectedCategory}
         />
-        ;
       </Col>
       {selectedCategory && (
         <Col className="col-md">
-          <FormAddTransaction selectedCategory={selectedCategory} />
+          <FormAddTransaction
+            selectedCategory={selectedCategory}
+            onAddTransaction={handleAddTransaction}
+          />
         </Col>
       )}
+      {/* Done: ADD A LIST OF TRANSACTIONS GROUPED BY CATEGORY*/}
+      {/* TODO: Add each category's transaction to show up under "Spent" when clicked on the number*/}
+      {/* <Col>
+        {transactions.map((t) => (
+          <p>
+            {t.title}
+            {t.transactionCategory}
+          </p>
+        ))}
+      </Col> */}
     </Row>
   );
 }
@@ -112,20 +135,29 @@ function Category({ category, onSelection, selectedCategory }) {
   );
 }
 
-function FormAddTransaction({ selectedCategory }) {
+function FormAddTransaction({ selectedCategory, onAddTransaction }) {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
+  const transactionCategory = selectedCategory.name.substring(3).toLowerCase();
 
   function handleSubmit(e) {
-    //how do I handle submit??
     e.preventDefault();
+
+    if (!title || !amount) return;
+
+    const newTransaction = { title, amount, transactionCategory };
+
+    onAddTransaction(newTransaction);
+
+    setTitle("");
+    setAmount("");
   }
   return (
     <div className="form-add-transaction">
       <h2>{selectedCategory.name}: Add Transation</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
-          <Col className="col-5 col-md-4 col-lg-3">
+          <Col className="col-5">
             <FormGroup>
               <Label htmlFor="title">Title</Label>
               <Input
@@ -136,7 +168,7 @@ function FormAddTransaction({ selectedCategory }) {
               />
             </FormGroup>
           </Col>
-          <Col className="col-5 col-md-4 col-lg-3">
+          <Col className="col-5">
             <FormGroup>
               <Label htmlFor="amount">Amount</Label>
               <Input
