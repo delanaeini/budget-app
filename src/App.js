@@ -18,7 +18,28 @@ export default function App() {
     { transactionCategory: "food", title: "grocery", amount: 1300 },
     { transactionCategory: "food", title: "restaurant", amount: 200 },
   ];
+  const initialCategories = [
+    {
+      name: "home",
+      description: "Rent, Utility, Decor",
+      plannedAmount: "2000",
+      spentAmount: "2000",
+    },
+    {
+      name: "food",
+      description: "Grocery, Restaurant",
+      plannedAmount: "1000",
+      spentAmount: "1500",
+    },
+    {
+      name: "transportation",
+      description: "Gas, Maintenance, Parking",
+      plannedAmount: "700",
+      spentAmount: "500",
+    },
+  ];
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [categories, setCategories] = useState(initialCategories);
   const [transactions, setTransactions] = useState(initialTransactions);
 
   function handleSelection(category) {
@@ -27,12 +48,26 @@ export default function App() {
     );
   }
   function handleAddTransaction(transaction) {
-    setTransactions((transactions) => [...transactions, transaction]);
+    setTransactions((transactions) => [...transactions, transaction]); //a list of transaction with all categories
+
+    setCategories((categories) =>
+      categories.map((category) =>
+        transaction.transactionCategory === category.name
+          ? {
+              ...category,
+              spentAmount:
+                Number(category.spentAmount) + Number(transaction.amount),
+            }
+          : category
+      )
+    );
   }
   return (
     <Row>
       <Col className="col-md-5">
         <CategoriesList
+          categories={categories}
+          transactions={transactions}
           onSelection={handleSelection}
           selectedCategory={selectedCategory}
         />
@@ -45,9 +80,8 @@ export default function App() {
           />
         </Col>
       )}
-      {/* Done: ADD A LIST OF TRANSACTIONS GROUPED BY CATEGORY*/}
-      {/* TODO: Add each category's transaction to show up under "Spent" when clicked on the number*/}
-      {/* <Col>
+      {/* To see transactions list
+      <Col>
         {transactions.map((t) => (
           <p>
             {t.title}
@@ -59,27 +93,12 @@ export default function App() {
   );
 }
 
-function CategoriesList({ onSelection, selectedCategory }) {
-  const sampleCategories = [
-    {
-      name: "🏠 Home",
-      description: "Rent, Utility, Decor",
-      plannedAmount: "$2000",
-      spentAmount: "$2000",
-    },
-    {
-      name: "🥙 Food",
-      description: "Grocery, Restaurant",
-      plannedAmount: "$1000",
-      spentAmount: "$1500",
-    },
-    {
-      name: "🚗 Transportation",
-      description: "Gas, Maintenance, Parking",
-      plannedAmount: "$700",
-      spentAmount: "$500",
-    },
-  ];
+function CategoriesList({
+  transactions,
+  onSelection,
+  selectedCategory,
+  categories,
+}) {
   return (
     <div className="category-table">
       <Table>
@@ -88,8 +107,9 @@ function CategoriesList({ onSelection, selectedCategory }) {
           <th>Planned</th>
           <th colSpan={2}>Spent</th>
         </thead>
-        {sampleCategories.map((category) => (
+        {categories.map((category) => (
           <Category
+            transactions={transactions}
             category={category}
             onSelection={onSelection}
             selectedCategory={selectedCategory}
@@ -101,12 +121,25 @@ function CategoriesList({ onSelection, selectedCategory }) {
   );
 }
 
-function Category({ category, onSelection, selectedCategory }) {
+function Category({ category, onSelection, selectedCategory, transactions }) {
   const isSelected = selectedCategory?.name === category.name;
+
+  // TODO: Make the Spent part of categories table dynamic
+  // const filteredTransactions = transactions.filter(
+  //   (transaction) =>
+  //     transactions.tranactionCategory ===
+  //     selectedCategory.name;
+  // );
+  // const spentAmount = filteredTransactions.reduce(
+  //   (acc, curr) => acc + curr.amount, 0)
+  // );
+
+  // TODO: Add each category's transaction to show up under "Spent" when clicked on the number
+  console.log(selectedCategory);
   return (
     <>
       <tr>
-        <th>{category.name}</th>
+        <th style={{ color: "#0c6dfd" }}>{category.name.toUpperCase()}</th>
         <td rowSpan={2}>{category.plannedAmount}</td>
         <td
           rowSpan={2}
@@ -138,7 +171,7 @@ function Category({ category, onSelection, selectedCategory }) {
 function FormAddTransaction({ selectedCategory, onAddTransaction }) {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
-  const transactionCategory = selectedCategory.name.substring(3).toLowerCase();
+  const transactionCategory = selectedCategory.name;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -174,7 +207,7 @@ function FormAddTransaction({ selectedCategory, onAddTransaction }) {
               <Input
                 id="amount"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => setAmount(Number(e.target.value))}
               />
             </FormGroup>
           </Col>
