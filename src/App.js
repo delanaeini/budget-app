@@ -19,16 +19,20 @@ export default function App() {
     );
   }
   return (
-    <>
-      <CategoriesList
-        onSelection={handleSelection}
-        selectedCategory={selectedCategory}
-      />
-      ;
+    <Row>
+      <Col className="col-md-5">
+        <CategoriesList
+          onSelection={handleSelection}
+          selectedCategory={selectedCategory}
+        />
+        ;
+      </Col>
       {selectedCategory && (
-        <FormAddTransaction selectedCategory={selectedCategory} />
+        <Col className="col-md">
+          <FormAddTransaction selectedCategory={selectedCategory} />
+        </Col>
       )}
-    </>
+    </Row>
   );
 }
 
@@ -54,11 +58,10 @@ function CategoriesList({ onSelection, selectedCategory }) {
     },
   ];
   return (
-    <>
-      <h1>Categories</h1>
-      <Table className="category-table">
+    <div className="category-table">
+      <Table>
         <thead>
-          <td>&nbsp;</td>
+          <th>Categories</th>
           <th>Planned</th>
           <th colSpan={2}>Spent</th>
         </thead>
@@ -71,7 +74,7 @@ function CategoriesList({ onSelection, selectedCategory }) {
         ))}
       </Table>
       <Button className="bg-primary">Add a Category...</Button>
-    </>
+    </div>
   );
 }
 
@@ -118,7 +121,7 @@ function FormAddTransaction({ selectedCategory }) {
     e.preventDefault();
   }
   return (
-    <>
+    <div className="form-add-transaction">
       <h2>{selectedCategory.name}: Add Transation</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
@@ -144,10 +147,10 @@ function FormAddTransaction({ selectedCategory }) {
             </FormGroup>
           </Col>
         </Row>
-        <Button className="bg-warning border-warning text-dark" type="submit">
+        <Button className="btn-light text-white" type="submit">
           Add
         </Button>
       </Form>
-    </>
+    </div>
   );
 }
