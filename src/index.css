@@ -22,3 +22,8 @@
 .form-add-transaction Input {
   border-color: #0c6dfd;
 }
+
+Table th {
+  padding-right: 1rem;
+  padding-top: 2rem;
+}
