@@ -8,7 +8,8 @@ export default function Category({
 }) {
   const isSelected = selectedCategory?.name === category.name;
 
-  // TODO: Add each category's transaction to show up under "Spent" when clicked on the number
+  //TODO: fix new category's NaN when adding an expense
+  //TODO: Add transactions to Spent
   console.log(selectedCategory);
   return (
     <>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Row, Col } from "reactstrap";
 import CategoriesList from "./CategoriesList";
 import FormAddTransaction from "./FormAddTransaction";
+import FormAddCategory from "./FormAddCategory";
 
 export default function App() {
   const initialTransactions = [
@@ -34,12 +35,14 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categories, setCategories] = useState(initialCategories);
   const [transactions, setTransactions] = useState(initialTransactions);
+  const [showAddCategory, setShowAddCategory] = useState(false);
 
   function handleSelection(category) {
     setSelectedCategory((selected) =>
       selected?.name === category.name ? null : category
     );
   }
+
   function handleAddTransaction(transaction) {
     setTransactions((transactions) => [...transactions, transaction]); //a list of transaction with all categories
 
@@ -55,33 +58,41 @@ export default function App() {
       )
     );
   }
+
+  function handleAddCategory(category) {
+    setCategories((categories) => [...categories, category]);
+    setShowAddCategory(!showAddCategory);
+  }
+
   return (
-    <Row>
-      <Col className="col-md-5">
-        <CategoriesList
-          categories={categories}
-          transactions={transactions}
-          onSelection={handleSelection}
-          selectedCategory={selectedCategory}
-        />
-      </Col>
-      {selectedCategory && (
-        <Col className="col-md">
-          <FormAddTransaction
+    <>
+      <Row>
+        <Col className="col-md-5">
+          <CategoriesList
+            categories={categories}
+            transactions={transactions}
+            onSelection={handleSelection}
             selectedCategory={selectedCategory}
-            onAddTransaction={handleAddTransaction}
+            showAddCategory={showAddCategory}
+            setShowAddCategory={setShowAddCategory}
           />
         </Col>
-      )}
-      {/* To see transactions list
-      <Col>
-        {transactions.map((t) => (
-          <p>
-            {t.title}
-            {t.transactionCategory}
-          </p>
-        ))}
-      </Col> */}
-    </Row>
+        {selectedCategory && (
+          <Col className="col-md">
+            <FormAddTransaction
+              selectedCategory={selectedCategory}
+              onAddTransaction={handleAddTransaction}
+            />
+          </Col>
+        )}
+      </Row>
+      <Row>
+        <Col>
+          {showAddCategory && (
+            <FormAddCategory onAddCategory={handleAddCategory} />
+          )}
+        </Col>
+      </Row>
+    </>
   );
 }

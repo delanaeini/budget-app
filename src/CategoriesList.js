@@ -1,19 +1,21 @@
 import { Table, Button } from "reactstrap";
-
 import Category from "./Category";
+
 export default function CategoriesList({
   transactions,
   onSelection,
   selectedCategory,
   categories,
+  showAddCategory,
+  setShowAddCategory,
 }) {
   return (
     <div className="category-table">
       <Table>
-        <thead>
-          <th>Categories</th>
-          <th>Planned</th>
-          <th colSpan={2}>Spent</th>
+        <thead style={{ color: "hotpink" }}>
+          <th>CATEGORIES</th>
+          <th>PLANNED</th>
+          <th colSpan={2}>SPENT</th>
         </thead>
         {categories.map((category) => (
           <Category
@@ -24,7 +26,12 @@ export default function CategoriesList({
           />
         ))}
       </Table>
-      <Button className="bg-primary">Add a Category...</Button>
+      <Button
+        className="bg-primary"
+        onClick={() => setShowAddCategory(!showAddCategory)}
+      >
+        Add a Category...
+      </Button>
     </div>
   );
 }

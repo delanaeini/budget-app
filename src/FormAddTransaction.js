@@ -21,9 +21,10 @@ export default function FormAddTransaction({
     setTitle("");
     setAmount("");
   }
+
   return (
     <div className="form-add-transaction">
-      <h2>{selectedCategory.name}: Add Transation</h2>
+      <h2>{selectedCategory.name.toUpperCase()}: Add Transaction</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col className="col-5">
