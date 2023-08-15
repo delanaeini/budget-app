@@ -7,9 +7,7 @@
 .form-add-category {
   background-color: #daeaf1;
   padding: 4rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem;
   border: 4px solid #0c6dfd;
   border-radius: 12px;
   color: #0c6dfd;
@@ -24,9 +22,7 @@
 .form-add-transaction {
   background-color: #daeaf1;
   padding: 4rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem;
   border: 4px solid #0c6dfd;
   border-radius: 12px;
   color: #0c6dfd;

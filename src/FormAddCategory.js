@@ -12,8 +12,8 @@ export default function FormAddCategory({ onAddCategory }) {
     if (!name || !plannedAmount) return;
 
     const newCategory = { name, description, plannedAmount };
-
-    onAddCategory(newCategory);
+    let spentAmount = ""; //to add an empty place for spentamount added later
+    onAddCategory({ ...newCategory, spentAmount });
 
     setName("");
     setDescription("");
