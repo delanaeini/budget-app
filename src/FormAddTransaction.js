@@ -32,6 +32,7 @@ export default function FormAddTransaction({
               <Label htmlFor="title">Title</Label>
               <Input
                 className="form-control"
+                type="text"
                 id="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -42,9 +43,11 @@ export default function FormAddTransaction({
             <FormGroup>
               <Label htmlFor="amount">Amount</Label>
               <Input
+                className="form-control"
+                type="number"
                 id="amount"
                 value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
+                onChange={(e) => setAmount(e.target.value)}
               />
             </FormGroup>
           </Col>

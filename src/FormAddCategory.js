@@ -30,6 +30,7 @@ export default function FormAddCategory({ onAddCategory }) {
               <Label htmlFor="name">Name</Label>
               <Input
                 className="form-control"
+                type="text"
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -40,6 +41,8 @@ export default function FormAddCategory({ onAddCategory }) {
             <FormGroup>
               <Label htmlFor="plannedAmount">Planned Amount</Label>
               <Input
+                className="form-control"
+                type="number"
                 id="plannedAmount"
                 value={plannedAmount}
                 onChange={(e) => setPlannedAmount(Number(e.target.value))}
@@ -53,6 +56,7 @@ export default function FormAddCategory({ onAddCategory }) {
               <Label htmlFor="description">Description</Label>
               <Input
                 className="form-control"
+                type="text"
                 id="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
