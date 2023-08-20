@@ -10,10 +10,10 @@ A budgeting app made with React and Reactstrap that shows planned and spent expe
 npm -v
 ```
 
-- Install package.json
+- Install node modules
 
 ```
-npm install package.json
+npm install
 ```
 
 - Run on local computer
