@@ -11,11 +11,10 @@ input[type="number"] {
 .category-table {
   margin-left: 2rem;
   margin-right: 2rem;
-  margin-bottom: 2rem;
 }
 
 .form-add-category {
-  background-color: #daeaf1;
+  background-color: #e8f8ff;
   padding: 4rem;
   margin: 2rem;
   border: 4px solid #0c6dfd;
@@ -30,7 +29,7 @@ input[type="number"] {
 }
 
 .form-add-transaction {
-  background-color: #daeaf1;
+  background-color: #e8f8ff;
   padding: 4rem;
   margin: 2rem;
   border: 4px solid #0c6dfd;

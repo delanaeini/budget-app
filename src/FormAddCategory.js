@@ -25,7 +25,7 @@ export default function FormAddCategory({ onAddCategory }) {
       <h2>Add a Category</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
-          <Col className="col-5">
+          <Col className="col-sm-6 col-md-5 col-lg-4">
             <FormGroup>
               <Label htmlFor="name">Name</Label>
               <Input
@@ -37,7 +37,7 @@ export default function FormAddCategory({ onAddCategory }) {
               />
             </FormGroup>
           </Col>
-          <Col className="col-5">
+          <Col className="col-sm-6 col-md-5 col-lg-4">
             <FormGroup>
               <Label htmlFor="plannedAmount">Planned Amount</Label>
               <Input
@@ -51,7 +51,7 @@ export default function FormAddCategory({ onAddCategory }) {
           </Col>
         </Row>
         <Row>
-          <Col className="col-10">
+          <Col className="col-sm-12 col-md-10 col-lg-8">
             <FormGroup>
               <Label htmlFor="description">Description</Label>
               <Input

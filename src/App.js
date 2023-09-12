@@ -4,6 +4,13 @@ import CategoriesList from "./CategoriesList";
 import FormAddTransaction from "./FormAddTransaction";
 import FormAddCategory from "./FormAddCategory";
 
+//TODO: Add transactions to Spent
+//TODO: Change forms to show up as modals
+//TODO: Edit planned amount
+//TODO: Delete/Edit categories
+//TODO: Get forms to show on modals
+//TODO: Divide Categories table into more components
+
 export default function App() {
   const initialTransactions = [
     { transactionCategory: "home", title: "rent", amount: 1700 },

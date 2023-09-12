@@ -8,8 +8,6 @@ export default function Category({
 }) {
   const isSelected = selectedCategory?.name === category.name;
 
-  //TODO: fix new category's NaN when adding an expense
-  //TODO: Add transactions to Spent
   console.log(selectedCategory);
   return (
     <>

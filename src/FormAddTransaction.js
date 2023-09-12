@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Button, Form, Label, Input, Row, Col, FormGroup } from "reactstrap";
+import {
+  Button,
+  Modal,
+  Form,
+  Label,
+  Input,
+  Row,
+  Col,
+  FormGroup,
+} from "reactstrap";
 
 export default function FormAddTransaction({
   selectedCategory,
