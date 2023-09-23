@@ -4,20 +4,41 @@ import CategoriesList from "./CategoriesList";
 import FormAddTransaction from "./FormAddTransaction";
 import FormAddCategory from "./FormAddCategory";
 
-//TODO: Add transactions to Spent
-//TODO: Change forms to show up as modals
-//TODO: Edit planned amount
 //TODO: Delete/Edit categories
 //TODO: Get forms to show on modals
-//TODO: Divide Categories table into more components
 
 export default function App() {
   const initialTransactions = [
-    { transactionCategory: "home", title: "rent", amount: 1700 },
-    { transactionCategory: "home", title: "utility", amount: 300 },
-    { transactionCategory: "transportation", title: "gas", amount: 500 },
-    { transactionCategory: "food", title: "grocery", amount: 1300 },
-    { transactionCategory: "food", title: "restaurant", amount: 200 },
+    {
+      id: "41g9284h",
+      transactionCategory: "home",
+      title: "rent",
+      amount: 1700,
+    },
+    {
+      id: "4389182g",
+      transactionCategory: "home",
+      title: "utility",
+      amount: 300,
+    },
+    {
+      id: "65oe843",
+      transactionCategory: "transportation",
+      title: "gas",
+      amount: 500,
+    },
+    {
+      id: "8idi4098",
+      transactionCategory: "food",
+      title: "grocery",
+      amount: 1300,
+    },
+    {
+      id: "88k9hksh",
+      transactionCategory: "food",
+      title: "restaurant",
+      amount: 200,
+    },
   ];
   const initialCategories = [
     {
@@ -41,8 +62,8 @@ export default function App() {
   ];
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categories, setCategories] = useState(initialCategories);
-  const [transactions, setTransactions] = useState(initialTransactions);
   const [showAddCategory, setShowAddCategory] = useState(false);
+  const [transactions, setTransactions] = useState(initialTransactions);
 
   function handleSelection(category) {
     setSelectedCategory((selected) =>
@@ -70,7 +91,6 @@ export default function App() {
     setCategories((categories) => [...categories, category]);
     setShowAddCategory(!showAddCategory);
   }
-
   return (
     <>
       <Row>
@@ -88,6 +108,7 @@ export default function App() {
           <Col className="col-md">
             <FormAddTransaction
               selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
               onAddTransaction={handleAddTransaction}
             />
           </Col>

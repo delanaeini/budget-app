@@ -13,6 +13,10 @@ input[type="number"] {
   margin-right: 2rem;
 }
 
+.category-table th {
+  border: none;
+}
+
 .form-add-category {
   background-color: #e8f8ff;
   padding: 4rem;
@@ -46,11 +50,16 @@ input[type="number"] {
   color: hotpink;
 }
 
-/* .form-add-transaction Input {
-  border-color: #0c6dfd;
-} */
+.planned-input {
+  border: none;
+  border-radius: 5px;
+  min-width: 60%;
+  max-width: 60%;
+  height: 35px;
+}
 
-th {
-  padding-right: 1rem;
-  padding-top: 2rem;
+.transactions-modal ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

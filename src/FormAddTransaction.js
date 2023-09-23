@@ -1,16 +1,9 @@
+import { v4 as uuid } from "uuid";
 import { useState } from "react";
-import {
-  Button,
-  Modal,
-  Form,
-  Label,
-  Input,
-  Row,
-  Col,
-  FormGroup,
-} from "reactstrap";
+import { Button, Form, Label, Input, Row, Col, FormGroup } from "reactstrap";
 
 export default function FormAddTransaction({
+  setSelectedCategory,
   selectedCategory,
   onAddTransaction,
 }) {
@@ -23,12 +16,15 @@ export default function FormAddTransaction({
 
     if (!title || !amount) return;
 
-    const newTransaction = { title, amount, transactionCategory };
+    let id = uuid().slice(0, 8);
+    const newTransaction = { id, transactionCategory, title, amount };
 
     onAddTransaction(newTransaction);
+    console.log(newTransaction);
 
     setTitle("");
     setAmount("");
+    setSelectedCategory(null);
   }
 
   return (

@@ -13,18 +13,24 @@ export default function CategoriesList({
     <div className="category-table">
       <Table>
         <thead style={{ color: "hotpink" }}>
-          <th>CATEGORIES</th>
-          <th>PLANNED</th>
-          <th colSpan={2}>SPENT</th>
+          <tr>
+            <th>CATEGORIES</th>
+            <th>PLANNED</th>
+            <th>SPENT</th>
+            <th>ADD TRANSACTION</th>
+          </tr>
         </thead>
-        {categories.map((category) => (
-          <Category
-            transactions={transactions}
-            category={category}
-            onSelection={onSelection}
-            selectedCategory={selectedCategory}
-          />
-        ))}
+        <tbody>
+          {categories.map((category) => (
+            <Category
+              key={category.description}
+              transactions={transactions}
+              category={category}
+              onSelection={onSelection}
+              selectedCategory={selectedCategory}
+            />
+          ))}
+        </tbody>
       </Table>
       <Button
         className="bg-primary"
